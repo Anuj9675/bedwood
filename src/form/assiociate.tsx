@@ -271,7 +271,7 @@ const AssociateForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
               name="country"
               control={control}
               render={({ field }) => (
-                <div className="border-2 border-gray-300 rounded-md p-2 w-full focus-within:ring focus-within:ring-orange-300 focus-within:outline-none">
+                <div className=" rounded-md  w-full ">
                   <CountryDropdown
                     id="country"
                     value={field.value}

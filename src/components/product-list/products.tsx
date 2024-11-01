@@ -14,9 +14,13 @@ import {
   getCartItems,
 } from "@/src/utils/cartUtils";
 import { useProducts } from "@/src/hooks/useProducts";
-import { selectedCategoryState, selectedSubCategoryState } from "@/src/state/atoms/filterstate";
+import {
+  selectedCategoryState,
+  selectedSubCategoryState,
+} from "@/src/state/atoms/filterstate";
 import { refetchProductData } from "@/src/state/atoms/refetchdata";
 import { ImSpinner2 } from "react-icons/im";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 export const ProductsPage: React.FC = () => {
   const [sortValue, setSortValue] = useState<string>("1");
@@ -28,8 +32,7 @@ export const ProductsPage: React.FC = () => {
     sortValue,
     categoryId,
     SubCategoryId,
-    currentPage,
-
+    currentPage
   );
   const refetchdata = useRecoilValue(refetchProductData);
 
@@ -41,19 +44,23 @@ export const ProductsPage: React.FC = () => {
   const totalItems = data?.extra?.total || 0;
   const totalPages = Math.ceil(totalItems / 20);
 
-  const [selectedCategory, setSelectedCategory] = useRecoilState(selectedCategoryState);
-  const [selectedSubCategory, setSelectedSubCategory] = useRecoilState(selectedSubCategoryState);
+  const [selectedCategory, setSelectedCategory] = useRecoilState(
+    selectedCategoryState
+  );
+  const [selectedSubCategory, setSelectedSubCategory] = useRecoilState(
+    selectedSubCategoryState
+  );
   const [selectedLayout, setSelectedLayout] = useState("2x2");
   const [openCart, setOpenCart] = useState(false);
-  const [cartItems, setCartItems] = useState<{ product: TProduct; quantity: number; variation?: string }[]>([]);
+  const [cartItems, setCartItems] = useState<
+    { product: TProduct; quantity: number; variation?: string }[]
+  >([]);
   const [cartItemCount, setCartItemCount] = useRecoilState(cartItemsCountState);
 
   useEffect(() => {
     const storedItems = getCartItems();
     setCartItems(storedItems);
-      // Scroll to top when the button is clicked
-
-  
+    // Scroll to top when the button is clicked
   }, []);
 
   useEffect(() => {
@@ -79,12 +86,20 @@ export const ProductsPage: React.FC = () => {
     setSelectedLayout(layout);
   };
 
-  const handleAddToCart = (product: TProduct, quantity: number, variationId?: string) => {
+  const handleAddToCart = (
+    product: TProduct,
+    quantity: number,
+    variationId?: string
+  ) => {
     addToCart(product, quantity, variationId);
     setCartItems(getCartItems());
   };
 
-  const handleUpdateQuantity = (productId: string, quantity: number, variationId?: string) => {
+  const handleUpdateQuantity = (
+    productId: string,
+    quantity: number,
+    variationId?: string
+  ) => {
     updateCartItemQuantity(productId, quantity, variationId);
     setCartItems(getCartItems());
   };
@@ -103,12 +118,18 @@ export const ProductsPage: React.FC = () => {
     setCurrentPage(page);
     window.scrollTo({
       top: 0,
-       // This adds a smooth scrolling effect
+      // This adds a smooth scrolling effect
     });
   };
 
-  if (isLoading) return <div className="text-center w-full h-screen flex justify-center items-center"><ImSpinner2 className="text-center items-center animate-spin text-2xl"/></div>;
-  if (isError) return <div className="text-center">Error fetching products!</div>;
+  if (isLoading)
+    return (
+      <div className="text-center w-full h-screen flex justify-center items-center">
+        <ImSpinner2 className="text-center items-center animate-spin text-2xl" />
+      </div>
+    );
+  if (isError)
+    return <div className="text-center">Error fetching products!</div>;
 
   return (
     <section className="pb-12 bg-gray-100 min-h-screen">
@@ -134,7 +155,9 @@ export const ProductsPage: React.FC = () => {
             } md:hidden`}
           >
             {isLoading ? (
-               <div className="text-center w-full h-screen flex justify-center items-center"><ImSpinner2 className="text-center items-center animate-spin text-2xl"/></div>
+              <div className="text-center w-full h-screen flex justify-center items-center">
+                <ImSpinner2 className="text-center items-center animate-spin text-2xl" />
+              </div>
             ) : isError ? (
               <p>Failed to load products.</p>
             ) : products.length > 0 ? (
@@ -160,8 +183,10 @@ export const ProductsPage: React.FC = () => {
                 : "md:grid-cols-3"
             }`}
           >
-           {isLoading ? (
-               <div className="text-center w-full h-screen flex justify-center items-center"><ImSpinner2 className="text-center items-center animate-spin text-2xl"/></div>
+            {isLoading ? (
+              <div className="text-center w-full h-screen flex justify-center items-center">
+                <ImSpinner2 className="text-center items-center animate-spin text-2xl" />
+              </div>
             ) : isError ? (
               <p>Failed to load products.</p>
             ) : products.length > 0 ? (
@@ -178,38 +203,87 @@ export const ProductsPage: React.FC = () => {
           </div>
         </div>
 
-{products.length > 0 && (
-    /* Pagination */
-    <div className="flex justify-center items-center space-x-2 my-8">
+        {products.length > 0 && (
+  /* Pagination */
+  <div className="flex justify-center items-center my-8">
+    {/* Left Arrow */}
     <button
       onClick={() => handlePageChange(currentPage - 1)}
       disabled={currentPage === 1}
-      className="px-4 py-2 border rounded-md bg-white text-gray-600 disabled:opacity-50"
+      className="w-10 h-10 border rounded-md bg-white text-gray-600 disabled:opacity-50 text-xs md:text-sm flex items-center justify-center"
     >
-      Previous
+      <FaChevronLeft /> {/* Left arrow icon */}
     </button>
-    {[...Array(totalPages)].map((_, index) => (
+
+    {/* Page Numbers */}
+    <div className="flex items-center space-x-2">
+      {/* Show first page button if current page is greater than 2 */}
+      {currentPage > 2 && (
+        <button
+          onClick={() => handlePageChange(1)}
+          className="w-10 h-10 border rounded-md bg-white text-gray-600 text-xs md:text-sm flex items-center justify-center"
+        >
+          1
+        </button>
+      )}
+
+      {/* Show ellipsis if needed */}
+      {currentPage > 3 && <span className="text-gray-600">...</span>}
+
+      {/* Show previous page button */}
+      {currentPage - 1 > 0 && (
+        <button
+          onClick={() => handlePageChange(currentPage - 1)}
+          className="w-10 h-10 border rounded-md bg-white text-gray-600 text-xs md:text-sm flex items-center justify-center"
+        >
+          {currentPage - 1}
+        </button>
+      )}
+
+      {/* Current Page */}
       <button
-        key={index}
-        onClick={() => handlePageChange(index + 1)}
-        className={`px-4 py-2 border rounded-md ${
-          currentPage === index + 1 ? 'bg-blue-500 text-white' : 'bg-white text-gray-600'
-        }`}
+        className="w-10 h-10 border rounded-md bg-orange-500 text-white text-xs md:text-sm flex items-center justify-center"
+        disabled
       >
-        {index + 1}
+        {currentPage}
       </button>
-    ))}
+
+      {/* Show next page button */}
+      {currentPage + 1 <= totalPages && (
+        <button
+          onClick={() => handlePageChange(currentPage + 1)}
+          className="w-10 h-10 border rounded-md bg-white text-gray-600 text-xs md:text-sm flex items-center justify-center"
+        >
+          {currentPage + 1}
+        </button>
+      )}
+
+      {/* Show ellipsis if needed */}
+      {currentPage < totalPages - 1 && (
+        <span className="text-gray-600">...</span>
+      )}
+
+      {/* Show last page button if current page is less than total pages */}
+      {currentPage < totalPages && (
+        <button
+          onClick={() => handlePageChange(totalPages)}
+          className="w-10 h-10 border rounded-md bg-white text-gray-600 text-xs md:text-sm flex items-center justify-center"
+        >
+          {totalPages}
+        </button>
+      )}
+    </div>
+
+    {/* Right Arrow */}
     <button
       onClick={() => handlePageChange(currentPage + 1)}
       disabled={currentPage === totalPages}
-      className="px-4 py-2 border rounded-md bg-white text-gray-600 disabled:opacity-50"
+      className="w-10 h-10 border rounded-md bg-white text-gray-600 disabled:opacity-50 text-xs md:text-sm flex items-center justify-center"
     >
-      Next
+      <FaChevronRight /> {/* Right arrow icon */}
     </button>
   </div>
 )}
-    
-
 
 
         {/* Cart Button */}

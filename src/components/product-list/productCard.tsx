@@ -62,14 +62,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }
             </button>
 
             {/* Quantity Display */}
-            <span className="text-xs sm:text-sm text-gray-700 font-medium w-6 sm:w-8 text-center">
+            <span className="text-xs sm:text-sm text-gray-700 font-medium w-6 sm:w-8 text-center border-x-2">
               {quantity}
             </span>
 
             {/* Plus Button */}
             <button
               onClick={() => handleQuantityChange(1)}
-              className="h-6 w-6 text-gray-500 hover:text-orange-600 transition-colors duration-200 p-1 rounded-full"
+              className="h-6 w-6 text-gray-500 hover:text-orange-600 transition-colors duration-200 p-1 rounded-full "
             >
               <PlusIcon className="h-3 w-3" />
             </button>
