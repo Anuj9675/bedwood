@@ -14,7 +14,7 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       fontFamily: {
-        pangram: ['Pangram Regular', 'sans-serif'], // Add the font family here
+        pangram: ['Pangram Regular', 'sans-serif'], 
       },
     },
   },

@@ -7,14 +7,14 @@ import { Navigation } from 'swiper/modules';
 import { Card } from '../index';
 
 const collections = [
-  { image: '/collections/1.png', title: '', paragraph: 'Comfortable sofas for your living room', link: '/productlist' },
-  { image: '/collections/2.png', title: '', paragraph: 'Stylish dining table for family meals', link: '/productlist' },
-  { image: '/collections/3.png', title: '', paragraph: 'Cozy beds for good night sleep', link: '/productlist' },
-  { image: '/collections/4.png', title: '', paragraph: 'Functional office desk for productivity', link: '/productlist' },
-  { image: '/collections/5.png', title: '', paragraph: 'Elegent lamp for brightening up the room', link: '/productlist' },
-  { image: '/collections/6.png', title: '', paragraph: 'Perfect Study tables for productivity', link: '/productlist' },
-  { image: '/collections/7.png', title: '', paragraph: 'Comfortable bed for restful sleep', link: '/productlist' },
-  { image: '/collections/8.png', title: '', paragraph: 'Outdoor Furniture', link: '/productlist/8' }
+  { image: '/collections/1.png', title: '', paragraph: '', link: '/productlist' },
+  { image: '/collections/2.png', title: '', paragraph: '', link: '/productlist' },
+  { image: '/collections/3.png', title: '', paragraph: '', link: '/productlist' },
+  { image: '/collections/4.png', title: '', paragraph: '', link: '/productlist' },
+  { image: '/collections/5.png', title: '', paragraph: '', link: '/productlist' },
+  { image: '/collections/6.png', title: '', paragraph: '', link: '/productlist' },
+  { image: '/collections/7.png', title: '', paragraph: '', link: '/productlist' },
+  { image: '/collections/8.png', title: '', paragraph: '', link: '/productlist' }
 ];
 
 export const CollectionsSection = () => {

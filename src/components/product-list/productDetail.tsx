@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React, { useEffect, useState } from "react";
 import ImageGallery from "react-image-gallery";
@@ -11,21 +11,27 @@ import { FiMessageSquare } from "react-icons/fi"; // Import WhatsApp icon
 import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { TProduct } from "@/src/services/product/product.type"; 
-import { getProduct } from "@/src/services/product"; 
+import { TProduct } from "@/src/services/product/product.type";
+import { getProduct } from "@/src/services/product";
 import { useMutation } from "@tanstack/react-query";
 import { OrderPost } from "@/src/services/order";
 
 // Form validation schema using Yup
 const schema = yup.object().shape({
   name: yup.string().required("Name is required"),
-  email: yup.string().email("Invalid email format").required("Email is required"),
-  phone: yup.string().matches(/^\d{10}$/, "Phone number must be exactly 10 digits").required("Phone number is required"),
+  email: yup
+    .string()
+    .email("Invalid email format")
+    .required("Email is required"),
+  phone: yup
+    .string()
+    .matches(/^\d{10}$/, "Phone number must be exactly 10 digits")
+    .required("Phone number is required"),
   address: yup.string().required("Address is required"),
 });
 
 interface ProductDetailProps {
-  id: string; 
+  id: string;
 }
 
 const loadCartItems = () => {
@@ -38,7 +44,9 @@ const loadCartItems = () => {
   }
 };
 
-const saveCartItems = (cartItems: { product: TProduct; quantity: number }[]) => {
+const saveCartItems = (
+  cartItems: { product: TProduct; quantity: number }[]
+) => {
   try {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   } catch (error) {
@@ -50,28 +58,37 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ id }) => {
   const [product, setProduct] = useState<TProduct | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [notification, setNotification] = useState<string | null>(null);
-  const [cartItems, setCartItems] = useState<{ product: TProduct; quantity: number }[]>([]);
+  const [cartItems, setCartItems] = useState<
+    { product: TProduct; quantity: number }[]
+  >([]);
   const [cartItemCount, setCartItemCount] = useRecoilState(cartItemsCountState);
   const [quantity, setQuantity] = useState(1);
   const [isProductInCart, setIsProductInCart] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [selectedVariation, setSelectedVariation] = useState<string | undefined>(); // State to store selected variation
+  const [selectedVariation, setSelectedVariation] = useState<
+    string | undefined
+  >(); // State to store selected variation
 
-  const { control, handleSubmit, formState: { errors }, reset } = useForm({
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
     defaultValues: {
       name: "",
       email: "",
       phone: "",
       address: "",
     },
-    resolver: yupResolver(schema), 
+    resolver: yupResolver(schema),
   });
 
   useEffect(() => {
     const fetchProduct = async () => {
       setIsLoading(true);
       try {
-        const productDetail = await getProduct(id); 
+        const productDetail = await getProduct(id);
         setProduct(productDetail || null);
       } catch (error) {
         console.error("Failed to fetch product:", error);
@@ -88,7 +105,9 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ id }) => {
     setCartItems(storedCartItems);
     setCartItemCount(storedCartItems.length);
 
-    const productInCart = storedCartItems.some((item: { product: { _id: string; }; }) => item.product._id === id);
+    const productInCart = storedCartItems.some(
+      (item: { product: { _id: string } }) => item.product._id === id
+    );
     setIsProductInCart(productInCart);
   }, [setCartItemCount, id]);
 
@@ -115,21 +134,28 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ id }) => {
   const SendOrderData = useMutation({
     mutationFn: OrderPost,
     onSuccess: (response) => {
-      console.log('Form Data submitted successfully', response);
+      console.log("Form Data submitted successfully", response);
     },
     onError: (error) => {
-      console.error('Error saving data:', error);
+      console.error("Error saving data:", error);
     },
   });
 
-  const onSubmit = (data: { name: string; email: string; phone: string; address: string; }) => {
-    if (!product) return; 
+  const onSubmit = (data: {
+    name: string;
+    email: string;
+    phone: string;
+    address: string;
+  }) => {
+    if (!product) return;
 
-    const OrderProductDetail = [{
-      "productId": product._id,
-      "quantity": quantity,
-      "variationId": selectedVariation 
-    }];
+    const OrderProductDetail = [
+      {
+        productId: product._id,
+        quantity: quantity,
+        variationId: selectedVariation,
+      },
+    ];
 
     const message = `
 *Product Details:*
@@ -147,14 +173,21 @@ Phone: ${data.phone}
 Address: ${data.address}
     `.trim();
 
-    console.log('selected variation', selectedVariation)
+    console.log("selected variation", selectedVariation);
 
     const encodedMessage = encodeURIComponent(message);
     const whatsappLink = `https://wa.me/8630715936?text=${encodedMessage}`;
 
     window.open(whatsappLink);
 
-    SendOrderData.mutateAsync({name: data.name, email: data.email, phone: data.phone, address: data.address, totalPrice: product.price, productDetails: OrderProductDetail});
+    SendOrderData.mutateAsync({
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      address: data.address,
+      totalPrice: product.price,
+      productDetails: OrderProductDetail,
+    });
 
     setShowModal(false);
     reset();
@@ -168,19 +201,27 @@ Address: ${data.address}
     return <p className="text-center font-semibold">Product not found</p>;
   }
 
-  const images = Array.isArray(product?.image) && product.image.length > 0 
-  ? product.image.map((imgUrl) => ({
-      original: imgUrl.startsWith('http') ? imgUrl : `http://${imgUrl}`,
-      thumbnail: imgUrl.startsWith('http') ? imgUrl : `http://${imgUrl}`,
-    })) 
-  : [{ original: 'https://placehold.co/600x400.png', thumbnail: 'https://placehold.co/600x400.png' }];
-
+  const images =
+    Array.isArray(product?.image) && product.image.length > 0
+      ? product.image.map((imgUrl) => ({
+          original: imgUrl.startsWith("http") ? imgUrl : `http://${imgUrl}`,
+          thumbnail: imgUrl.startsWith("http") ? imgUrl : `http://${imgUrl}`,
+        }))
+      : [
+          {
+            original: "https://placehold.co/600x400.png",
+            thumbnail: "https://placehold.co/600x400.png",
+          },
+        ];
 
   return (
-    <div className="flex flex-col m-4">
+    <div className="flex flex-col m-4 ">
       <main className="flex flex-col md:flex-row items-center pt-4 md:pt-6 md:px-32">
-      <div className="md:w-1/2 w-full flex flex-col items-center">
-          <div className="w-full md:w-auto px-4 flex justify-center"> {/* Center the image */}
+        {/* Image Gallery Section */}
+        <div className="md:w-1/2 w-full h-full flex flex-col items-center">
+          <div className="w-full h-full flex justify-center">
+            {" "}
+            {/* Center the image */}
             <ImageGallery
               items={images}
               showNav={false}
@@ -189,170 +230,231 @@ Address: ${data.address}
               disableSwipe={false}
               showThumbnails={true}
               showBullets={false}
-             
-              
             />
           </div>
         </div>
 
-        <div className="w-full md:w-1/2 px-4 md:m-0 m-6  flex flex-col justify-center"> {/* Align text to the right */}
-          <h2 className="text-2xl font-bold mb-2">{product.name}</h2>
-          <p className="text-gray-600 mb-4">({product.category})</p>
-          <div className="mb-4">
-            <span className="text-2xl font-bold mr-2">Rs. {product.price}</span>
-          </div>
-
-          <p className="text-gray-700 mb-4 text-balance">{product.descriptions}</p>
-
-          {product.variations && product.variations.length > 0 && (
-            <div className="mb-4">
-              <h4 className="text-lg font-semibold mb-2">Variations</h4>
-              {product.variations.map((variation, index) => (
-                <div key={index} className="flex items-center">
-                  <input
-                    type="radio"
-                    id={`variation-${index}`}
-                    name="variation"
-                    value={variation.value}
-                    checked={selectedVariation === variation._id}
-                    onChange={() => setSelectedVariation(variation._id)}
-                    className="mr-2"
-                  />
-                  <label htmlFor={`variation-${index}`} className="cursor-pointer">
-                    {variation.type}: {variation.value}
-                  </label>
-                </div>
-              ))}
+        {/* Content Section */}
+        <div className="w-full md:w-1/2 px-4 md:m-0 m-6 flex flex-col justify-start overflow-y-auto h-screen">
+          <div className="overflow-y-auto pt-4 scrollbar-hide">
+            {/* Content Starts Here */}
+            <h2 className="text-2xl font-bold mb-2">{product.name}</h2>
+            <p className="text-gray-600 mb-4">({product.category})</p>
+            <div className="relative w-full mb-4">
+              <hr className="p-2" />
+              <div className="flex flex-col items-start px-4">
+                <span className="text-sm uppercase text-orange-500">
+                  Today's Deal
+                </span>
+                <span className="text-2xl font-bold text-black ">
+                  Rs. {product.price}
+                </span>
+              </div>
+              <hr className="p-2" />
             </div>
-          )}
+            <div>
+              <strong>Description :</strong>
+              <p className="text-gray-700 my-4 text-balance">
+                {product.descriptions}
+              </p>
+            </div>
 
-          <div className="flex items-center space-x-2 p-4 pl-0">
-            <button
-              onClick={() => setQuantity((prev) => Math.max(prev - 1, 1))}
-              className="bg-gray-300 text-gray-700 px-2 rounded-md"
-            >
-              -
-            </button>
-            <p>{quantity}</p>
-            <button
-              onClick={() => setQuantity((prev) => prev + 1)}
-              className="bg-gray-300 text-gray-700 px-2 rounded-md"
-            >
-              +
-            </button>
-          </div>
+            {/* Product Overview */}
+            <div className="mb-4">
+              <h4 className="text-lg font-semibold mb-2">Product Overview</h4>
+              <ul className="list-disc pl-5 space-y-1 text-gray-700">
+                <li>
+                  <strong>Designs</strong>
+                </li>
+                <li>
+                  <strong>Material:</strong> Velvet
+                </li>
+                <li>
+                  <strong>Color:</strong> Brown
+                </li>
+                <li>
+                  <strong>Shape:</strong> Rectangular
+                </li>
+                <li>
+                  <strong>Style:</strong> Chesterfield
+                </li>
+                <li>
+                  <strong>Features:</strong> Anti-sag Built, Deep
+                  Button-Tufting, and English Rolled Arms
+                </li>
+                <li>
+                  <strong>Armrest:</strong> Yes
+                </li>
+                <li>
+                  <strong>Foam:</strong> High Density Foam
+                </li>
+                <li>
+                  <strong>Three Seater Dimensions (Inches):</strong>
+                </li>
+                <li>
+                  <strong>Warranty:</strong>
+                </li>
+                <li>
+                  <strong>Brand:</strong>
+                </li>
+                <li>
+                  <strong>Delivery Condition:</strong>
+                </li>
+                <li className="flex items-center gap-2">
+                  <strong>Quantity:</strong>
+                  <div className="flex items-center space-x-2">
+                    <button
+                      onClick={() =>
+                        setQuantity((prev) => Math.max(prev - 1, 1))
+                      }
+                      className="bg-gray-300 text-gray-700 px-2 rounded-md"
+                    >
+                      -
+                    </button>
+                    <p>{quantity}</p>
+                    <button
+                      onClick={() => setQuantity((prev) => prev + 1)}
+                      className="bg-gray-300 text-gray-700 px-2 rounded-md"
+                    >
+                      +
+                    </button>
+                  </div>
+                </li>
+              </ul>
+            </div>
 
-          <div className="flex items-center space-x-4">
-            <button
-              onClick={() => handleAddToCart(product)}
-              disabled={isProductInCart}
-              className={`flex items-center px-4 py-2 text-white rounded-md ${isProductInCart ? "bg-gray-400" : "bg-green-600"}`}
-            >
-              <ShoppingCartIcon className="h-5 w-5 mr-2" />
-              {isProductInCart ? "Added to Cart" : "Add to Cart"}
-            </button>
-            <button
-              onClick={handleBuyNow}
-              className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-md"
-            >
-              <FiMessageSquare className="h-5 w-5 mr-2" /> {/* WhatsApp Icon */}
-              Buy Now
-            </button>
-          </div>
-
-          {notification && <p className="text-red-500 mt-2">{notification}</p>}
-
-          {showModal && (
-          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md"
-            >
-              <h3 className="text-lg font-bold mb-4">Complete Your Order</h3>
-              <div className="flex mb-4 space-x-4">
-                <div className="flex-1">
-                  <label className="block mb-1" htmlFor="name">Name</label>
-                  <Controller
-                    name="name"
-                    control={control}
-                    render={({ field }) => (
-                      <input
-                        type="text"
-                        {...field}
-                        className="border-2 rounded-md w-full p-2"
-                      />
-                    )}
-                  />
-                  {errors.name && <p className="text-red-500">{errors.name.message}</p>}
-                </div>
-                <div className="flex-1">
-                  <label className="block mb-1" htmlFor="phone">Mobile No</label>
-                  <Controller
-                    name="phone"
-                    control={control}
-                    render={({ field }) => (
-                      <input
-                        type="text"
-                        {...field}
-                        className="border-2 rounded-md w-full p-2"
-                      />
-                    )}
-                  />
-                  {errors.phone && <p className="text-red-500">{errors.phone.message}</p>}
-                </div>
-              </div>
-
-              <div className="mb-4">
-                <label className="block mb-1" htmlFor="email">Email</label>
-                <Controller
-                  name="email"
-                  control={control}
-                  render={({ field }) => (
-                    <input
-                      type="email"
-                      {...field}
-                      className="border-2 rounded-md w-full p-2"
-                    />
-                  )}
-                />
-                {errors.email && <p className="text-red-500">{errors.email.message}</p>}
-              </div>
-
-              <div className="mb-4">
-                <label className="block mb-1" htmlFor="address">Address</label>
-                <Controller
-                  name="address"
-                  control={control}
-                  render={({ field }) => (
-                    <textarea
-                      {...field}
-                      className="border-2 rounded-md w-full p-2"
-                      rows={3}
-                    />
-                  )}
-                />
-                {errors.address && <p className="text-red-500">{errors.address.message}</p>}
-              </div>
-
-              <div className="flex justify-start space-x-2">
+            <div className="flex items-center space-x-4">
               <button
-                  type="submit"
-                  className="bg-green-600 text-white px-4 py-2 rounded-md"
+                onClick={() => handleAddToCart(product)}
+                disabled={isProductInCart}
+                className={`flex items-center px-4 py-2 text-white rounded-md ${
+                  isProductInCart ? "bg-gray-400" : "bg-green-600"
+                }`}
+              >
+                <ShoppingCartIcon className="h-5 w-5 mr-2" />
+                {isProductInCart ? "Added to Cart" : "Add to Cart"}
+              </button>
+              <button
+                onClick={handleBuyNow}
+                className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-md"
+              >
+                <FiMessageSquare className="h-5 w-5 mr-2" />{" "}
+                {/* WhatsApp Icon */}
+                Buy Now
+              </button>
+            </div>
+            {notification && (
+              <p className="text-red-500 mt-2">{notification}</p>
+            )}
+            {showModal && (
+              <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                <form
+                  onSubmit={handleSubmit(onSubmit)}
+                  className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md"
                 >
-                  Submit
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setShowModal(false)}
-                  className="bg-red-500 text-white px-4 py-2 rounded-md"
-                >
-                  Cancel
-                </button>
-                
+                  <h3 className="text-lg font-bold mb-4">
+                    Complete Your Order
+                  </h3>
+                  <div className="flex mb-4 space-x-4">
+                    <div className="flex-1">
+                      <label className="block mb-1" htmlFor="name">
+                        Name
+                      </label>
+                      <Controller
+                        name="name"
+                        control={control}
+                        render={({ field }) => (
+                          <input
+                            type="text"
+                            {...field}
+                            className="border-2 rounded-md w-full p-2"
+                          />
+                        )}
+                      />
+                      {errors.name && (
+                        <p className="text-red-500">{errors.name.message}</p>
+                      )}
+                    </div>
+                    <div className="flex-1">
+                      <label className="block mb-1" htmlFor="phone">
+                        Mobile No
+                      </label>
+                      <Controller
+                        name="phone"
+                        control={control}
+                        render={({ field }) => (
+                          <input
+                            type="text"
+                            {...field}
+                            className="border-2 rounded-md w-full p-2"
+                          />
+                        )}
+                      />
+                      {errors.phone && (
+                        <p className="text-red-500">{errors.phone.message}</p>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="mb-4">
+                    <label className="block mb-1" htmlFor="email">
+                      Email
+                    </label>
+                    <Controller
+                      name="email"
+                      control={control}
+                      render={({ field }) => (
+                        <input
+                          type="email"
+                          {...field}
+                          className="border-2 rounded-md w-full p-2"
+                        />
+                      )}
+                    />
+                    {errors.email && (
+                      <p className="text-red-500">{errors.email.message}</p>
+                    )}
+                  </div>
+
+                  <div className="mb-4">
+                    <label className="block mb-1" htmlFor="address">
+                      Address
+                    </label>
+                    <Controller
+                      name="address"
+                      control={control}
+                      render={({ field }) => (
+                        <textarea
+                          {...field}
+                          className="border-2 rounded-md w-full p-2"
+                          rows={3}
+                        />
+                      )}
+                    />
+                    {errors.address && (
+                      <p className="text-red-500">{errors.address.message}</p>
+                    )}
+                  </div>
+
+                  <div className="flex justify-start space-x-2">
+                    <button
+                      type="submit"
+                      className="bg-green-600 text-white px-4 py-2 rounded-md"
+                    >
+                      Submit
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setShowModal(false)}
+                      className="bg-red-500 text-white px-4 py-2 rounded-md"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </form>
               </div>
-            </form>
+            )}
           </div>
-        )}
         </div>
       </main>
     </div>

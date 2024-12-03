@@ -14,7 +14,7 @@ export const BuyOnPhoneButton: React.FC = () => {
             className="flex items-center justify-center p-3 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 transition duration-200"
         >
             <div className='flex flex-col items-center'>
-                <FaWhatsapp className="text-3xl" />
+                <FaWhatsapp className="text-xl" />
             </div>
         </Link>
     );

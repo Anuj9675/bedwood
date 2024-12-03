@@ -1,4 +1,6 @@
+'use client'
 import React from "react";
+import Image from "next/image";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -71,6 +73,10 @@ const AssociateForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         >
           &times;
         </button>
+
+        <div className="flex justify-center ">
+        <Image src="/logo.png" className="h-20" alt="Logo" width={270} height={300} />
+        </div>
         <h2 className="text-lg font-semibold mb-6 text-center text-orange-600">
           Become a Company Associate!
         </h2>

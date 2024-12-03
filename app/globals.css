@@ -7,6 +7,11 @@
   overscroll-behavior: none;
 }
 
+@layer base {
+  body {
+    @apply font-serif;
+  }
+}
 
 .swiperButtonPrev, .swiperButtonNext {
   width: 30px; /* Smaller width */
