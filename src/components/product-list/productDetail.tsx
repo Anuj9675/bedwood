@@ -244,7 +244,7 @@ Address: ${data.address}
               <hr className="p-2" />
               <div className="flex flex-col items-start px-4">
                 <span className="text-sm uppercase text-orange-500">
-                  Today's Deal
+                  Today&apos;s Deal
                 </span>
                 <span className="text-2xl font-bold text-black ">
                   Rs. {product.price}
