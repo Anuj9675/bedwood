@@ -105,7 +105,7 @@ export const CartDialog: React.FC<CartDialogProps> = ({
                                 <p className="text-sm text-gray-500">
                                   {quantity > 1 ? (
                                     <>
-                                      ₹{product.price} x {quantity} = $
+                                      ₹{product.price} x {quantity} = ₹
                                       {(product.price * quantity).toFixed(2)}
                                     </>
                                   ) : (
