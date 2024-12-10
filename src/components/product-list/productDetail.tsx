@@ -3,11 +3,15 @@
 import React, { useEffect, useState } from "react";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
-import { ShoppingCartIcon } from "@heroicons/react/24/outline";
+import {
+  MinusIcon,
+  PlusIcon,
+  ShoppingCartIcon,
+} from "@heroicons/react/24/outline";
 import { useRecoilState } from "recoil";
 import { cartItemsCountState } from "@/src/state/atoms/countCartState";
 import { BiPurchaseTag } from "react-icons/bi";
-import { FiMessageSquare } from "react-icons/fi"; // Import WhatsApp icon
+import { FiMessageSquare } from "react-icons/fi";
 import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -161,8 +165,7 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ id }) => {
 *Product Details:*
 Name: ${product.name}
 Category: ${product.category}
-Quantity: ${quantity}
-Variation: ${selectedVariation} 
+Quantity: ${quantity} 
 Price: ${product.price}
 Description: ${product.descriptions}
 
@@ -215,12 +218,18 @@ Address: ${data.address}
         ];
 
   return (
-    <div className="flex flex-col m-4 ">
+    <div className="flex flex-col m-4 md:mb-12 overflow-y-auto">
       <main className="flex flex-col md:flex-row items-center pt-4 md:pt-6 md:px-32">
-        {/* Image Gallery Section */}
         <div className="md:w-1/2 w-full h-full flex flex-col items-center">
-          <div className="w-full h-full flex justify-center">
-            {" "}
+          {/* Product Description for mobile*/}
+          <div className="block md:hidden mb-4">
+            <h2 className="text-2xl font-bold mb-2">{product.name}</h2>
+            <p className="text-gray-600 mb-4">({product.category})</p>
+            <p className="text-gray-700 my-4 text-pretty">
+              {product.descriptions}
+            </p>
+          </div>
+          <div className="w-full h-full flex justify-center overflow-x-auto md:overflow-hidden">
             {/* Center the image */}
             <ImageGallery
               items={images}
@@ -230,6 +239,15 @@ Address: ${data.address}
               disableSwipe={false}
               showThumbnails={true}
               showBullets={false}
+              renderItem={(item) => (
+                <div className="flex justify-center items-center w-full md:w-auto h-full">
+                  <img
+                    src={item.original}
+                    alt={item.description}
+                    className="object-cover w-[400px] h-[400px] md:w-[600px] md:h-[600px]" 
+                  />
+                </div>
+              )}
             />
           </div>
         </div>
@@ -238,8 +256,10 @@ Address: ${data.address}
         <div className="w-full md:w-1/2 px-4 md:m-0 m-6 flex flex-col justify-start overflow-y-auto h-screen">
           <div className="overflow-y-auto pt-4 scrollbar-hide">
             {/* Content Starts Here */}
+            <div className="md:block hidden">
             <h2 className="text-2xl font-bold mb-2">{product.name}</h2>
             <p className="text-gray-600 mb-4">({product.category})</p>
+            </div>
             <div className="relative w-full mb-4">
               <hr className="p-2" />
               <div className="flex flex-col items-start px-4">
@@ -252,83 +272,48 @@ Address: ${data.address}
               </div>
               <hr className="p-2" />
             </div>
-            <div>
-              <strong>Description :</strong>
-              <p className="text-gray-700 my-4 text-balance">
-                {product.descriptions}
-              </p>
+
+            {/* Product Description for mobile*/}
+          <div className="md:block hidden">
+            
+            <p className="text-gray-700 my-4 text-pretty">
+              {product.descriptions}
+            </p>
+          </div>
+
+            
+          <hr className="p-2" />
+            {/* Quantity Section */}
+            <div className="grid grid-cols-[max-content_max-content_1fr] items-center gap-x-4 mb-4">
+              <strong>Quantity</strong>
+              <div className="flex items-center border border-gray-300  rounded-md  w-fit">
+                <button
+                  onClick={() => setQuantity((prev) => Math.max(prev - 1, 1))}
+                  className="h-8 w-8 text-black  hover:text-orange-600 transition-all duration-200  "
+                >
+                  <MinusIcon className="h-4 w-4 mx-auto" />
+                </button>
+                
+                <p className="w-10 text-center">{quantity}</p>
+                
+                <button
+                  onClick={() => setQuantity((prev) => prev + 1)}
+                  className="h-8 w-8  text-black hover:text-orange-600   transition-all duration-200 "
+                >
+                  <PlusIcon className="h-4 w-4 mx-auto" />
+                </button>
+              </div>
             </div>
 
-            {/* Product Overview */}
-            <div className="mb-4">
-              <h4 className="text-lg font-semibold mb-2">Product Overview</h4>
-              <ul className="list-disc pl-5 space-y-1 text-gray-700">
-                <li>
-                  <strong>Designs</strong>
-                </li>
-                <li>
-                  <strong>Material:</strong> Velvet
-                </li>
-                <li>
-                  <strong>Color:</strong> Brown
-                </li>
-                <li>
-                  <strong>Shape:</strong> Rectangular
-                </li>
-                <li>
-                  <strong>Style:</strong> Chesterfield
-                </li>
-                <li>
-                  <strong>Features:</strong> Anti-sag Built, Deep
-                  Button-Tufting, and English Rolled Arms
-                </li>
-                <li>
-                  <strong>Armrest:</strong> Yes
-                </li>
-                <li>
-                  <strong>Foam:</strong> High Density Foam
-                </li>
-                <li>
-                  <strong>Three Seater Dimensions (Inches):</strong>
-                </li>
-                <li>
-                  <strong>Warranty:</strong>
-                </li>
-                <li>
-                  <strong>Brand:</strong>
-                </li>
-                <li>
-                  <strong>Delivery Condition:</strong>
-                </li>
-                <li className="flex items-center gap-2">
-                  <strong>Quantity:</strong>
-                  <div className="flex items-center space-x-2">
-                    <button
-                      onClick={() =>
-                        setQuantity((prev) => Math.max(prev - 1, 1))
-                      }
-                      className="bg-gray-300 text-gray-700 px-2 rounded-md"
-                    >
-                      -
-                    </button>
-                    <p>{quantity}</p>
-                    <button
-                      onClick={() => setQuantity((prev) => prev + 1)}
-                      className="bg-gray-300 text-gray-700 px-2 rounded-md"
-                    >
-                      +
-                    </button>
-                  </div>
-                </li>
-              </ul>
-            </div>
+            <hr className="p-2" />
 
+           
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => handleAddToCart(product)}
                 disabled={isProductInCart}
                 className={`flex items-center px-4 py-2 text-white rounded-md ${
-                  isProductInCart ? "bg-gray-400" : "bg-green-600"
+                  isProductInCart ? "bg-red-600" : "bg-orange-600"
                 }`}
               >
                 <ShoppingCartIcon className="h-5 w-5 mr-2" />
@@ -336,13 +321,46 @@ Address: ${data.address}
               </button>
               <button
                 onClick={handleBuyNow}
-                className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-md"
+                className="flex items-center px-4 py-2 bg-green-600 text-white rounded-md"
               >
                 <FiMessageSquare className="h-5 w-5 mr-2" />{" "}
                 {/* WhatsApp Icon */}
                 Buy Now
               </button>
             </div>
+
+            {/* Product Overview */}
+            <div className="my-8">
+              <h4 className="text-lg font-semibold mb-2">Product Overview</h4>
+              <hr className="p-2" />
+
+              {/* Variations Section */}
+              {product.variations && product.variations.length > 0 && (
+                <div className="my-2 font-sans">
+                  <table className="table-auto w-full">
+                    <tbody>
+                      {product.variations.map((variation) => (
+                        <tr key={variation._id}>
+                          <td className=" py-2 text-gray-900 font-normal">
+                            {variation.type}
+                          </td>
+                          <td className="px-4 py-2 text-gray-600 font-normal">
+                            :
+                          </td>
+                          <td className="py-2 text-gray-600">
+                            {variation.value}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+
+              <hr className="p-2" />
+            </div>
+
+           
             {notification && (
               <p className="text-red-500 mt-2">{notification}</p>
             )}
@@ -455,7 +473,9 @@ Address: ${data.address}
               </div>
             )}
           </div>
+          
         </div>
+        
       </main>
     </div>
   );

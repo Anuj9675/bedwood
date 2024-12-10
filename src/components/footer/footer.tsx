@@ -38,19 +38,19 @@ export function Footer() {
           {/* Navigation Links Section */}
           <div className="flex flex-col w-full lg:w-auto">
             <div className="flex flex-wrap items-center gap-2 lg:gap-4 font-semibold">
-              <Link href="#" className="hover:underline">
+              <Link href="/about-us" className="hover:underline">
                 About us
               </Link>
               <span >|</span>
-              <Link href="#" className="hover:underline">
+              <Link href="/privacy-policy" className="hover:underline">
                 Privacy Policy
               </Link>
               <span >|</span>
-              <Link href="#" className="hover:underline">
+              <Link href="/licensing" className="hover:underline">
                 Licensing
               </Link>
               <span >|</span>
-              <Link href="#" className="hover:underline">
+              <Link href="/product-services" className="hover:underline">
                 Product Services
               </Link>
             </div>

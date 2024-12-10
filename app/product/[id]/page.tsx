@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, ProductDetail } from '@/src/components';
+import { Banner,  ProductDetail } from '@/src/components';
 
 interface ProductDetailPageProps {
   params: {
@@ -12,8 +12,10 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
 
   return (
     <div>
-      <Header />
+      
       <ProductDetail id={id} />
+
+    
     </div>
   );
 }

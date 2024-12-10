@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import {
   BestSellerSection,
   BrandSection,
-  Header,
+
   ImageSection,
   OfferSection,
   TopPicksSection,
@@ -53,7 +53,7 @@ export const HomePage = () => {
 
   return (
     <main className="overflow-hidden">
-      <Header />
+      
       <ImageSection />
       <TopPicksSection />
       <BrandSection />
@@ -64,7 +64,7 @@ export const HomePage = () => {
       
       <ReviewSection />
       <BedwoodFaq/>
-      <Footer />
+      
 
       {isPopUpVisible && <PopUpForm onClose={handleClosePopUp} />}
     </main>
