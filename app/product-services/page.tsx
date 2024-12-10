@@ -14,7 +14,7 @@ const ProductServices = () => {
         <h2 className="text-3xl font-semibold text-gray-800">Product Design</h2>
         <p className="text-lg text-gray-600 mt-4">
           Our expert designers offer a wide range of customized furniture solutions to suit your personal
-          style and space. Whether it's a modern aesthetic or classic elegance, we bring your vision to life with
+          style and space. Whether it&apos;s a modern aesthetic or classic elegance, we bring your vision to life with
           our high-quality craftsmanship.
         </p>
       </section>
@@ -22,7 +22,7 @@ const ProductServices = () => {
       <section className="mt-12">
         <h2 className="text-3xl font-semibold text-gray-800">Customization</h2>
         <p className="text-lg text-gray-600 mt-4">
-          We understand that every customer has unique needs. That's why we offer customization options on most of
+          We understand that every customer has unique needs. That&apos;s why we offer customization options on most of
           our products. From color choices to materials, dimensions, and finishes, our team will work with you to
           create the perfect piece for your space.
         </p>
@@ -39,8 +39,8 @@ const ProductServices = () => {
       <section className="mt-12">
         <h2 className="text-3xl font-semibold text-gray-800">Maintenance and Repair</h2>
         <p className="text-lg text-gray-600 mt-4">
-          Our services don't end at purchase. We offer comprehensive maintenance and repair services to extend the
-          life of your furniture. Whether it's fixing wear and tear, reupholstering, or restoring damaged finishes,
+          Our services don&apos;t end at purchase. We offer comprehensive maintenance and repair services to extend the
+          life of your furniture. Whether it&apos;s fixing wear and tear, reupholstering, or restoring damaged finishes,
           our team is here to help.
         </p>
       </section>
@@ -68,7 +68,7 @@ const ProductServices = () => {
         <p className="text-lg text-gray-600 mt-4">
           Our dedicated customer support team is available to assist you with any questions or issues regarding our
           products or services. Whether you need help with your order, tracking delivery, or guidance on choosing
-          the right product, we're here to help.
+          the right product, we&apos;re here to help.
         </p>
       </section>
     </div>
