@@ -7,14 +7,14 @@ import { Navigation } from 'swiper/modules';
 import { Card } from '../index';
 
 const bestSellers = [
-  { image: '/bestsellerof/1.png', title: '', paragraph: '', link: '/productlist' },
-  { image: '/bestsellerof/2.png', title: '', paragraph: '', link: '/productlist' },
-  { image: '/bestsellerof/3.png', title: '', paragraph: '', link: '/productlist' },
-  { image: '/bestsellerof/4.png', title: '', paragraph: '', link: '/productlist' },
-  { image: '/bestsellerof/5.png', title: '', paragraph: '', link: '/productlist' },
-  { image: '/bestsellerof/6.png', title: '', paragraph: '', link: '/productlist' },
-  { image: '/bestsellerof/7.png', title: '', paragraph: '', link: '/productlist' },
-  { image: '/bestsellerof/8.png', title: '', paragraph: '', link: '/productlist' }
+  { image: '/bestsellerof/1.png', title: '', paragraph: '', link: '/productlist?categoryId=67075e3299a97c3e8c6512f2' },
+  { image: '/bestsellerof/2.png', title: '', paragraph: '', link: '/productlist?categoryId=670a3b0ecb95d84fec72235b' },
+  { image: '/bestsellerof/3.png', title: '', paragraph: '', link: '/productlist?categoryId=67076494cb95d84fec71ff78' },
+  { image: '/bestsellerof/4.png', title: '', paragraph: '', link: '//productlist?categoryId=67076494cb95d84fec71ff78' },
+  { image: '/bestsellerof/5.png', title: '', paragraph: '', link: '/productlist?categoryId=67091c43cb95d84fec720a51' },
+  { image: '/bestsellerof/6.png', title: '', paragraph: '', link: '/productlist?categoryId=67091c43cb95d84fec720a51' },
+  { image: '/bestsellerof/7.png', title: '', paragraph: '', link: '/productlist?categoryId=670a3b24cb95d84fec72238b' },
+  { image: '/bestsellerof/8.png', title: '', paragraph: '', link: '/productlist?categoryId=67076494cb95d84fec71ff78' }
 ];
 
 export const BestSellerSection = () => {

@@ -10,14 +10,14 @@ interface Essential {
 
 export const EssentialsSection: React.FC = () => {
   const essentials: Essential[] = [
-    { image: '/homefurniture/1.png', title: 'Large Sofa', description: 'Comfortable sofa for your living room', link: '/productlist' },
-    { image: '/homefurniture/2.png', title: 'Single Mini Sofa', description: 'Comfortable single mini sofa for your living room', link: '/productlist' },
-    { image: '/homefurniture/3.png', title: 'Indoor Mini Sofa ', description: 'Comfortable indoor mini sofa for your living room', link: '/productlist' },
-    { image: '/homefurniture/4.png', title: 'Large Sofa', description: 'Comfortable sofa for your living room', link: '/productlist' },
-    { image: '/homefurniture/5.png', title: 'Mini Sofa', description: 'Comfortable mini sofa for your office', link: '/productlist' },
-    { image: '/homefurniture/6.png', title: 'Modern Sofa', description: 'Comfortable modern sofa for your living room', link: '/productlist' },
-    { image: '/homefurniture/7.png', title: 'Large Sofa', description: 'Comfortable sofa for your living room', link: '/productlist' },
-    { image: '/homefurniture/8.png', title: 'Modern Sofa', description: 'Comfortable sofa for your living room', link: '/productlist' }
+    { image: '/homefurniture/1.png', title: 'Large Sofa', description: 'Comfortable sofa for your living room', link: '/productlist?categoryId=67076494cb95d84fec71ff78' },
+    { image: '/homefurniture/2.png', title: 'Single Mini Sofa', description: 'Comfortable single mini sofa for your living room', link: '/productlist?categoryId=67076494cb95d84fec71ff78' },
+    { image: '/homefurniture/3.png', title: 'Indoor Mini Sofa ', description: 'Comfortable indoor mini sofa for your living room', link: '/productlist?categoryId=67076494cb95d84fec71ff78' },
+    { image: '/homefurniture/4.png', title: 'Large Sofa', description: 'Comfortable sofa for your living room', link: '/productlist?categoryId=67076494cb95d84fec71ff78' },
+    { image: '/homefurniture/5.png', title: 'Mini Sofa', description: 'Comfortable mini sofa for your office', link: '/productlist?categoryId=67076494cb95d84fec71ff78' },
+    { image: '/homefurniture/6.png', title: 'Modern Sofa', description: 'Comfortable modern sofa for your living room', link: '/productlist?categoryId=67076494cb95d84fec71ff78' },
+    { image: '/homefurniture/7.png', title: 'Large Sofa', description: 'Comfortable sofa for your living room', link: '/productlist?categoryId=67076494cb95d84fec71ff78' },
+    { image: '/homefurniture/8.png', title: 'Modern Sofa', description: 'Comfortable sofa for your living room', link: '/productlist?categoryId=67076494cb95d84fec71ff78' }
   ];
 
   return (

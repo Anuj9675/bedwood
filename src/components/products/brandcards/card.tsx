@@ -9,7 +9,7 @@ interface CardProps {
 
 export const Card: React.FC<CardProps> = ({ image, title, paragraph, link }) => {
   return (
-    <a href={link} className="relative min-w-[270px] md:min-w-[370px] max-w-xs md:max-w-sm aspect-[3/2] bg-gray-200 overflow-hidden shadow-xs block">
+    <a href={link} className="relative min-w-[270px] md:min-w-[370px] max-w-xs md:max-w-sm aspect-[3/2] bg-gray-200 overflow-hidden shadow-xs block m-2">
       {/* Image */}
       <img src={image} alt={title} className="w-full h-full object-cover" />
 
