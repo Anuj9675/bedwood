@@ -52,7 +52,7 @@ export const BrandSection = () => {
       {/* Cards Grid */}
       <div className="w-full max-w-8xl mx-auto flex justify-center">
         {/* For small screens */}
-        <div className="md:hidden overflow-x-auto flex space-x-4">
+        <div className="md:hidden overflow-x-auto flex space-x-4 flex-wrap justify-center">
           {cardData.map((card, index) => (
             <Card
               key={index}

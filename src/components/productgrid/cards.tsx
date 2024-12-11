@@ -44,7 +44,7 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({ product, onAddToCart }
 
       {/* Product Details Overlay */}
       <div className="absolute bottom-0 left-0 right-0 p-4 bg-black/50 backdrop-blur-sm">
-        <h3 className="text-md font-bold text-white line-clamp-1 font-serif">
+        <h3 className="text-md font-normal text-white line-clamp-1 font-sans">
           {product.name}
         </h3>
       </div>

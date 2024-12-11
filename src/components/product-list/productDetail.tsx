@@ -311,7 +311,7 @@ Address: ${data.address}
 
             <hr className="p-2" />
 
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-4 md:mt-0 mt-4">
               <button
                 onClick={() => handleAddToCart(product)}
                 disabled={isProductInCart}
