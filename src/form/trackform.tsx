@@ -42,7 +42,7 @@ export const TrackForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         
         {/* Image on the left side */}
         <div className="w-full md:w-1/2 flex items-center justify-center p-4">
-          <img src="/home/banner-tracking.png" alt="Track" className="object-cover rounded-lg ml-4" style={{ maxHeight: 'full', width: 'full' }} />
+          <img src="/home/track.jpg" alt="Track" className="object-cover rounded-lg ml-4" style={{ maxHeight: 'full', width: 'full' }} />
         </div>
 
         {/* Form on the right */}
