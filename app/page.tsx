@@ -1,4 +1,5 @@
 import { BuyOnPhoneButton } from "@/src/components";
+import CallButton from "@/src/components/callbutton/indedx";
 import { HomePage } from "@/src/screens";
 
 
@@ -13,6 +14,10 @@ export default function Home() {
     
       <div className="fixed top-1/2 right-0 transform -translate-y-1/2 z-50 ">
         <BuyOnPhoneButton />
+      </div>
+
+      <div className="fixed bottom left-0  z-50">
+        <CallButton/>
       </div>
     </main>
   );
