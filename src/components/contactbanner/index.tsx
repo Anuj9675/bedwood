@@ -37,7 +37,7 @@ export const ContactBanner: React.FC = () => {
 
           {/* Call Us (WhatsApp) */}
           <a
-            href="https://wa.me/8630715936" 
+            href="tel:+91 86307 15936"
             target="_blank"
             rel="noopener noreferrer"
             className="group flex flex-col items-center justify-center bg-white w-40 h-40 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"

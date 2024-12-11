@@ -16,6 +16,7 @@ import {
   
 } from "@/src/components";
 import { PopUpForm } from '@/src/form/popform';
+import { InfoSection } from '../components/infosection';
 
 export const HomePage = () => {
   const [isPopUpVisible, setIsPopUpVisible] = useState(false); // Initialize as false
@@ -53,6 +54,7 @@ export const HomePage = () => {
       
       <ImageSection />
       <TopPicksSection />
+      <InfoSection/>
       <BrandSection />
       <BestSellerSection />
       <Banner/>
