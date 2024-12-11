@@ -10,7 +10,6 @@ import {
 } from "@heroicons/react/24/outline";
 import { useRecoilState } from "recoil";
 import { cartItemsCountState } from "@/src/state/atoms/countCartState";
-import { BiPurchaseTag } from "react-icons/bi";
 import { FiMessageSquare } from "react-icons/fi";
 import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
@@ -19,6 +18,7 @@ import { TProduct } from "@/src/services/product/product.type";
 import { getProduct } from "@/src/services/product";
 import { useMutation } from "@tanstack/react-query";
 import { OrderPost } from "@/src/services/order";
+import { FaSpinner } from "react-icons/fa";
 
 // Form validation schema using Yup
 const schema = yup.object().shape({
@@ -72,6 +72,8 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ id }) => {
   const [selectedVariation, setSelectedVariation] = useState<
     string | undefined
   >(); // State to store selected variation
+
+  
 
   const {
     control,
@@ -197,7 +199,12 @@ Address: ${data.address}
   };
 
   if (isLoading) {
-    return <p className="text-center font-semibold">Loading...</p>;
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <FaSpinner className="animate-spin text-gray-700 text-4xl" />
+        
+      </div>
+    );
   }
 
   if (!product) {
@@ -244,7 +251,7 @@ Address: ${data.address}
                   <img
                     src={item.original}
                     alt={item.description}
-                    className="object-cover w-[400px] h-[400px] md:w-[600px] md:h-[600px]" 
+                    className="object-cover w-[400px] h-[400px] md:w-[600px] md:h-[600px]"
                   />
                 </div>
               )}
@@ -252,13 +259,12 @@ Address: ${data.address}
           </div>
         </div>
 
-        {/* Content Section */}
-        <div className="w-full md:w-1/2 px-4 md:m-0 m-6 flex flex-col justify-start overflow-y-auto h-screen">
-          <div className="overflow-y-auto pt-4 scrollbar-hide">
+        <div className="w-full md:w-1/2 px-4 md:m-0 m-6 flex flex-col justify-start h-screen md:overflow-y-auto overflow-hidden scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
+          <div className="pt-4">
             {/* Content Starts Here */}
             <div className="md:block hidden">
-            <h2 className="text-2xl font-bold mb-2">{product.name}</h2>
-            <p className="text-gray-600 mb-4">({product.category})</p>
+              <h2 className="text-2xl font-bold mb-2">{product.name}</h2>
+              <p className="text-gray-600 mb-4">({product.category})</p>
             </div>
             <div className="relative w-full mb-4">
               <hr className="p-2" />
@@ -266,7 +272,7 @@ Address: ${data.address}
                 <span className="text-sm uppercase text-orange-500">
                   Today&apos;s Deal
                 </span>
-                <span className="text-2xl font-bold text-black ">
+                <span className="text-2xl font-bold text-black">
                   Rs. {product.price}
                 </span>
               </div>
@@ -274,31 +280,29 @@ Address: ${data.address}
             </div>
 
             {/* Product Description for mobile*/}
-          <div className="md:block hidden">
-            
-            <p className="text-gray-700 my-4 text-pretty">
-              {product.descriptions}
-            </p>
-          </div>
+            <div className="md:block hidden">
+              <p className="text-gray-700 my-4 text-pretty">
+                {product.descriptions}
+              </p>
+            </div>
 
-            
-          <hr className="p-2" />
+            <hr className="p-2" />
             {/* Quantity Section */}
             <div className="grid grid-cols-[max-content_max-content_1fr] items-center gap-x-4 mb-4">
               <strong>Quantity</strong>
-              <div className="flex items-center border border-gray-300  rounded-md  w-fit">
+              <div className="flex items-center border border-gray-300 rounded-md w-fit divide-x-2">
                 <button
                   onClick={() => setQuantity((prev) => Math.max(prev - 1, 1))}
-                  className="h-8 w-8 text-black  hover:text-orange-600 transition-all duration-200  "
+                  className="h-8 w-8 text-black hover:text-orange-600 transition-all duration-200"
                 >
                   <MinusIcon className="h-4 w-4 mx-auto" />
                 </button>
-                
+
                 <p className="w-10 text-center">{quantity}</p>
-                
+
                 <button
                   onClick={() => setQuantity((prev) => prev + 1)}
-                  className="h-8 w-8  text-black hover:text-orange-600   transition-all duration-200 "
+                  className="h-8 w-8 text-black hover:text-orange-600 transition-all duration-200"
                 >
                   <PlusIcon className="h-4 w-4 mx-auto" />
                 </button>
@@ -307,7 +311,6 @@ Address: ${data.address}
 
             <hr className="p-2" />
 
-           
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => handleAddToCart(product)}
@@ -323,9 +326,7 @@ Address: ${data.address}
                 onClick={handleBuyNow}
                 className="flex items-center px-4 py-2 bg-green-600 text-white rounded-md"
               >
-                <FiMessageSquare className="h-5 w-5 mr-2" />{" "}
-                {/* WhatsApp Icon */}
-                Buy Now
+                <FiMessageSquare className="h-5 w-5 mr-2" /> Buy Now
               </button>
             </div>
 
@@ -360,7 +361,6 @@ Address: ${data.address}
               <hr className="p-2" />
             </div>
 
-           
             {notification && (
               <p className="text-red-500 mt-2">{notification}</p>
             )}
@@ -473,9 +473,7 @@ Address: ${data.address}
               </div>
             )}
           </div>
-          
         </div>
-        
       </main>
     </div>
   );

@@ -10,14 +10,14 @@ interface Essential {
 
 export const EssentialsSection: React.FC = () => {
   const essentials: Essential[] = [
-    { image: '/homefurniture/1.png', title: 'Large Sofa', description: 'Comfortable sofa for your living room', link: '/productlist?subcategoryId=67076599cb95d84fec72006a' },
-    { image: '/homefurniture/2.png', title: 'Single Mini Sofa', description: 'Comfortable single mini sofa for your living room', link: '/productlist?subcategoryId=670765becb95d84fec7200a7' },
-    { image: '/homefurniture/3.png', title: 'Indoor Mini Sofa ', description: 'Comfortable indoor mini sofa for your living room', link: '/productlist?subcategoryId=670f7a739b47452d71dacf99' },
-    { image: '/homefurniture/4.png', title: 'Large Sofa', description: 'Comfortable sofa for your living room', link: '/productlist?subcategoryId=67091c0dcb95d84fec720a30' },
-    { image: '/homefurniture/5.png', title: 'Mini Sofa', description: 'Comfortable mini sofa for your office', link: '/productlist?subcategoryId=670765a7cb95d84fec72007c' },
-    { image: '/homefurniture/6.png', title: 'Modern Sofa', description: 'Comfortable modern sofa for your living room', link: '/productlist?subcategoryId=670765a7cb95d84fec72007c' },
-    { image: '/homefurniture/7.png', title: 'Large Sofa', description: 'Comfortable sofa for your living room', link: '/productlist?subcategoryId=670f83789b47452d71dad1cb' },
-    { image: '/homefurniture/8.png', title: 'Modern Sofa', description: 'Comfortable sofa for your living room', link: '/productlist?subcategoryId=670defb69b47452d71dab24b' }
+    { image: '/homefurniture/1.jpg', title: 'Computer Desk', description: 'Comfortable Computer Desk', link: '/productlist?subcategoryId=670a42bfcb95d84fec722c18' },
+    { image: '/homefurniture/2.jpg', title: 'Double Bed', description: 'Comfortable Double Bed for your bed room', link: '/productlist?subcategoryId=6707655ecb95d84fec720034' },
+    { image: '/homefurniture/3.jpg', title: 'Living Sofa ', description: 'Comfortable sofa for your living room', link: '/productlist?subcategoryId=67076599cb95d84fec72006a' },
+    { image: '/homefurniture/4.jpg', title: 'Wooden Almirah', description: 'A Wooden Almirah for your room', link: '/productlist?subcategoryId=670a4191cb95d84fec722acd' },
+    { image: '/homefurniture/5.jpg', title: 'Sofa Cum Bed', description: 'Comfortable Sofa Cum Bed for your home', link: '/productlist?subcategoryId=670defb69b47452d71dab24b' },
+    { image: '/homefurniture/6.jpg', title: 'Modern Sofa', description: 'Comfortable modern sofa for your living room', link: '/productlist?subcategoryId=670765becb95d84fec7200a7' },
+    { image: '/homefurniture/7.jpg', title: 'Dinning Table', description: 'A Dinning Table for your family', link: '/productlist?subcategoryId=670a4215cb95d84fec722b7a' },
+    { image: '/homefurniture/8.jpg', title: 'Almirah', description: 'An Almirah for your accessories', link: '/productlist?categoryId=67091c43cb95d84fec720a51' }
   ];
 
   return (

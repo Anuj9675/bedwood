@@ -4,19 +4,26 @@ interface CardProps {
   image: string;
   title: string;
   paragraph: string;
-  link: string; // Add link as a prop
+  link: string;
 }
 
 export const Card: React.FC<CardProps> = ({ image, title, paragraph, link }) => {
   return (
-    <a href={link} className="relative min-w-[270px] md:min-w-[370px] max-w-xs md:max-w-sm aspect-[3/2] bg-gray-200 overflow-hidden shadow-xs block m-2">
+    <a
+      href={link}
+      className="relative block overflow-hidden rounded-lg shadow-md group m-2 flex-shrink-0 w-[90%] sm:w-[300px] md:w-[370px] h-[200px] sm:h-[250px] md:h-[350px]"
+    >
       {/* Image */}
-      <img src={image} alt={title} className="w-full h-full object-cover" />
+      <img
+        src={image}
+        alt={title}
+        className="w-full h-full object-contain transform transition-transform duration-300 group-hover:scale-105"
+      />
 
       {/* Overlay Text */}
-      <div className="absolute top-0 left-0 p-4 bg-opacity-0 text-black w-full flex flex-col justify-start">
-        <h3 className="text-lg font-bold mb-2">{title}</h3>
-        <p className="text-sm">{paragraph}</p>
+      <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-white text-center p-4">
+        <h3 className="text-sm md:text-base font-bold">{title}</h3>
+        <p className="text-xs md:text-sm mt-2">{paragraph}</p>
       </div>
     </a>
   );

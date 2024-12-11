@@ -5,15 +5,12 @@ import {
   BrandSection,
 
   ImageSection,
-  OfferSection,
+  
   TopPicksSection,
   EssentialsSection,
   CollectionsSection,
-  FurnishingSection,
-  NewArrivalsSection,
-  ModulersSection,
   ReviewSection,
-  Footer,
+
   BedwoodFaq,
   Banner,
   
@@ -61,7 +58,6 @@ export const HomePage = () => {
       <Banner/>
       <EssentialsSection />
       <CollectionsSection />
-      
       <ReviewSection />
       <BedwoodFaq/>
       

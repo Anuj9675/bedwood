@@ -137,3 +137,18 @@ select[name="rcrs-country"]:focus {
 }
 
 
+/* In your global styles (e.g., styles/globals.css) */
+::-webkit-scrollbar {
+  width: 6px;  /* Make the scrollbar thin */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: white;  /* Customize scrollbar thumb color */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: white;  /* Customize track color */
+}
+
+

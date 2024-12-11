@@ -60,7 +60,7 @@ const AssociateForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   // Ensure onSubmit does not return anything
   const onSubmit = async (data: TAssociate): Promise<void> => {
     setAssociateData(data);
-    await mutation.mutateAsync(data); // Ensure mutateAsync is awaited for better handling
+     mutation.mutateAsync(data); 
   };
 
   return (

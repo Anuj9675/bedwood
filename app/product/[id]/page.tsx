@@ -1,5 +1,8 @@
 import React from 'react';
-import { Banner,  ProductDetail } from '@/src/components';
+import {   ProductDetail } from '@/src/components';
+import { ContactBanner } from '@/src/components/contactbanner';
+import { ProductGrid } from '@/src/components/productgrid';
+
 
 interface ProductDetailPageProps {
   params: {
@@ -14,8 +17,12 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
     <div>
       
       <ProductDetail id={id} />
+      <hr className='p-2'/>
+      <ContactBanner/>
+      <hr className='p-2'/>
+      <ProductGrid/>
+     
 
-    
     </div>
   );
 }

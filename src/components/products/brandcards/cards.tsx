@@ -3,46 +3,46 @@ import { Card } from './card';
 
 const cardData = [
   {
-    image: '/furniture/1.png',
+    image: '/furniture/1.jpg',
     title: '',
     paragraph: '',
-    link: '/productlist?categoryId=67075e3299a97c3e8c6512f2', // Add the link here
+    link: '/productlist?categoryId=67075e3299a97c3e8c6512f2',
   },
   {
-    image: '/furniture/2.png',
+    image: '/furniture/2.jpg',
     title: '',
     paragraph: '',
-    link: '/productlist?categoryId=67076494cb95d84fec71ff78',
+    link: '/productlist?categoryId=67076494cb95d84fec71ff78&subcategoryId=67076599cb95d84fec72006a',
   },
   {
-    image: '/furniture/3.png',
+    image: '/furniture/3.jpg',
     title: '',
     paragraph: '',
-    link: '/productlist?categoryId=670a3b0ecb95d84fec72235b',
+    link: '/productlist?subcategoryId=670a4215cb95d84fec722b7a',
   },
   {
-    image: '/furniture/4.jpeg',
+    image: '/furniture/4.jpg',
     title: '',
     paragraph: '',
-    link: '/productlist?subcategoryId=670a42d0cb95d84fec722c35',
+    link: '/productlist?subcategoryId=670765becb95d84fec7200a7',
   },
   {
-    image: '/furniture/5.jpeg',
+    image: '/furniture/5.jpg',
     title: '',
     paragraph: '',
-    link: '/productlist?subcategoryId=670a4191cb95d84fec722acd',
+    link: '/productlist?subcategoryId=67091c0dcb95d84fec720a30',
   },
   {
-    image: '/furniture/6.png',
+    image: '/furniture/6.jpg',
     title: '',
     paragraph: '',
-    link: '/productlist?subcategoryId=670a43dfcb95d84fec722d34',
+    link: '/productlist?categoryId=67091c43cb95d84fec720a51',
   },
 ];
 
 export const BrandSection = () => {
   return (
-    <section className="w-full h-auto py-12 px-6 bg-gray-50">
+    <section className="w-full h-auto py-12 px-6 bg-inherit">
       {/* Text Section */}
       <div className="md:text-center mb-8">
         <h2 className="text-2xl font-semibold mb-2">India&apos;s Finest Online Furniture Brand.</h2>

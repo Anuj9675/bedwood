@@ -3,6 +3,6 @@ import axios from "axios";
 
 export const Api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_URL,
-  timeout: 1000,
+  timeout: 10000,
   headers: { 'Content-Type': 'application/json' },
 });
