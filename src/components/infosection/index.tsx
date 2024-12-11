@@ -19,7 +19,8 @@ export const InfoSection = () => {
           />
         </svg>
       ),
-      text: "Free Delivery",
+      text: "Free",
+      subText: " Delivery",
     },
     {
       icon: (
@@ -76,21 +77,29 @@ export const InfoSection = () => {
           />
         </svg>
       ),
-      text: "100+ Stores",
+      text: "100+ ",
+      subText: "Stores",
     },
   ];
 
   return (
-    <div className="flex justify-between items-center gap-4 p-4 rounded-lg shadow flex-wrap sm:flex-nowrap">
+    <div className="md:hidden flex justify-between items-center gap-4 p-4 rounded-lg flex-wrap sm:flex-nowrap mx-auto">
       {infoItems.map((item, index) => (
         <div
           key={index}
           className="flex flex-col items-center justify-center text-center space-y-2 flex-1 sm:flex-none"
         >
+          {/* Icon */}
           <div className="flex items-center justify-center w-12 h-12 rounded-full bg-pink-100 text-pink-600">
             {item.icon}
           </div>
-          <p className="text-xs font-medium text-balance text-gray-700">{item.text}</p>
+          {/* Text */}
+          <p className="text-xs font-medium text-gray-700 whitespace-normal max-w-[90px] sm:max-w-none">
+            {item.text}
+            {item.subText && (
+              <span className="block text-xs text-gray-700 ">{item.subText}</span>
+            )}
+          </p>
         </div>
       ))}
     </div>

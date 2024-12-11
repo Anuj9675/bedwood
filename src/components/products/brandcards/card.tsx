@@ -11,7 +11,7 @@ export const Card: React.FC<CardProps> = ({ image, title, paragraph, link }) => 
   return (
     <a
       href={link}
-      className="relative block overflow-hidden rounded-lg shadow-md group m-2 w-fit h-48 xl:h-80 md:h-72"
+      className="relative block overflow-hidden rounded-lg  group m-2 w-fit h-48 xl:h-80 md:h-72"
     >
       {/* Image */}
       <img

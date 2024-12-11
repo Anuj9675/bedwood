@@ -46,20 +46,22 @@ export const BrandSection = () => {
       {/* Text Section */}
       <div className="md:text-center mb-8">
         <h2 className="text-2xl font-semibold mb-2">India&apos;s Finest Online Furniture Brand.</h2>
-        <p className="md:text-lg text-gray-600 text-balance">Buy Furniture Online from our extensive collection of wooden furniture units to give your home an elegant touch.</p>
+        <p className="md:text-lg text-gray-600 text-balance">
+          Buy Furniture Online from our extensive collection of wooden furniture units to give your home an elegant touch.
+        </p>
       </div>
 
       {/* Cards Grid */}
       <div className="w-full max-w-8xl mx-auto flex justify-center">
         {/* For small screens */}
-        <div className="md:hidden overflow-x-auto flex space-x-4 flex-wrap justify-center">
+        <div className="md:hidden grid grid-cols-2 gap-4 w-full">
           {cardData.map((card, index) => (
             <Card
               key={index}
               image={card.image}
               title={card.title}
               paragraph={card.paragraph}
-              link={card.link} // Pass the link to the card
+              link={card.link} 
             />
           ))}
         </div>
@@ -72,7 +74,7 @@ export const BrandSection = () => {
               image={card.image}
               title={card.title}
               paragraph={card.paragraph}
-              link={card.link} // Pass the link to the card
+              link={card.link} 
             />
           ))}
         </div>

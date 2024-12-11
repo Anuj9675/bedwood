@@ -53,8 +53,8 @@ export const HomePage = () => {
     <main className="overflow-hidden">
       
       <ImageSection />
-      <TopPicksSection />
       <InfoSection/>
+      <TopPicksSection />
       <BrandSection />
       <BestSellerSection />
       <Banner/>
