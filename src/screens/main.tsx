@@ -17,6 +17,8 @@ import {
 } from "@/src/components";
 import { PopUpForm } from '@/src/form/popform';
 import { InfoSection } from '../components/infosection';
+import { TopBanner } from '../components/toppicsbanner';
+import { DownBanner } from '../components/downbanner';
 
 export const HomePage = () => {
   const [isPopUpVisible, setIsPopUpVisible] = useState(false); // Initialize as false
@@ -53,12 +55,14 @@ export const HomePage = () => {
     <main className="overflow-hidden">
       
       <ImageSection />
+      <TopBanner/>
       <InfoSection/>
       <TopPicksSection />
       <BrandSection />
       <BestSellerSection />
       <Banner/>
       <EssentialsSection />
+      <DownBanner/>
       <CollectionsSection />
       <ReviewSection />
       <BedwoodFaq/>
