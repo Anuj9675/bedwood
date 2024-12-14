@@ -39,7 +39,7 @@ export const InfoSection = () => {
           />
         </svg>
       ),
-      text: "36 Months Warranty*",
+      text: "5 Year Warranty*",
     },
     {
       icon: (
@@ -58,7 +58,8 @@ export const InfoSection = () => {
           />
         </svg>
       ),
-      text: "No Cost EMI Available*",
+      text: "100% Customer",
+      subText: "Satisfaction",
     },
     {
       icon: (
@@ -83,23 +84,25 @@ export const InfoSection = () => {
   ];
 
   return (
-    <div className="md:hidden flex justify-between items-center gap-4 p-4 rounded-lg flex-wrap sm:flex-nowrap mx-auto">
+    <div className="md:hidden flex justify-between items-start gap-2 p-4 rounded-lg flex-wrap mx-auto">
       {infoItems.map((item, index) => (
         <div
           key={index}
-          className="flex flex-col items-center justify-center text-center space-y-2 flex-1 sm:flex-none"
+          className="flex flex-col items-center justify-start text-center space-y-1 flex-1 min-w-[60px] max-w-[80px]"
         >
           {/* Icon */}
-          <div className="flex items-center justify-center w-12 h-12 rounded-full bg-pink-100 text-pink-600">
+          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-pink-100 text-pink-600">
             {item.icon}
           </div>
           {/* Text */}
-          <p className="text-xs font-medium text-gray-700 whitespace-normal max-w-[90px] sm:max-w-none">
-            {item.text}
+          <div className="h-14 flex flex-col items-center justify-start">
+            <p className="text-[10px] font-medium text-gray-700 leading-tight">
+              {item.text}
+            </p>
             {item.subText && (
-              <span className="block text-xs text-gray-700 ">{item.subText}</span>
+              <span className="text-[10px] text-gray-700 leading-tight">{item.subText}</span>
             )}
-          </p>
+          </div>
         </div>
       ))}
     </div>
