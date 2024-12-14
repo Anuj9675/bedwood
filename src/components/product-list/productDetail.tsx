@@ -229,7 +229,7 @@ Address: ${data.address}
       <main className="flex flex-col md:flex-row items-center pt-4 md:pt-6 md:px-32">
         <div className="md:w-1/2 w-full h-full flex flex-col items-center ">
           {/* Product Description for mobile*/}
-          <div className="block md:hidden mb-4">
+          <div className="block md:hidden m-4">
             <h2 className="text-2xl font-bold mb-2">{product.name}</h2>
             <p className="text-gray-600 mb-4">({product.category})</p>
             <p className="text-gray-700 my-4 text-pretty">
