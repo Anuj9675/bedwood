@@ -225,19 +225,18 @@ Address: ${data.address}
         ];
 
   return (
-    <div className="flex flex-col w-screen h-screen overflow-hidden">
-      <main className="flex flex-col md:flex-row items-center pt-4 md:pt-6 md:px-32">
-        <div className="md:w-1/2 w-full h-full flex flex-col items-center ">
+    <div className="flex flex-col w-screen md:h-screen h-fit overflow-y-auto">
+      <main className="flex flex-col md:flex-row items-center pt-4 md:pt-6 md:px-32 ">
+        <div className="md:w-1/2 w-full md:h-full flex flex-col items-center">
           {/* Product Description for mobile*/}
-          <div className="block md:hidden m-4">
+          <div className="block md:hidden m-8">
             <h2 className="text-2xl font-bold mb-2">{product.name}</h2>
             <p className="text-gray-600 mb-4">({product.category})</p>
             <p className="text-gray-700 my-4 text-pretty">
               {product.descriptions}
             </p>
           </div>
-          <div className="pt-2">
-          <div className="w-full h-full flex justify-center overflow-x-auto md:overflow-hidden">
+          <div className="w-full h-full flex justify-center overflow-x-auto md:overflow-hidden ">
             {/* Center the image */}
             <ImageGallery
               items={images}
@@ -258,11 +257,10 @@ Address: ${data.address}
               )}
             />
           </div>
-          </div>
         </div>
 
-        <div className="w-full md:w-1/2 px-4 md:m-0 m-6 flex flex-col justify-start md:h-screen h-full md:overflow-y-auto overflow-hidden scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
-          <div className="pt-4">
+        <div className="w-full md:w-1/2 px-4 md:m-0 m-6 flex flex-col justify-start md:h-screen md:overflow-y-auto overflow-hidden ">
+          <div className="md:m-4 m-8">
             {/* Content Starts Here */}
             <div className="md:block hidden">
               <h2 className="text-2xl font-bold mb-2">{product.name}</h2>
