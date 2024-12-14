@@ -236,7 +236,7 @@ Address: ${data.address}
               {product.descriptions}
             </p>
           </div>
-          <div className="w-full h-full flex justify-center overflow-x-auto md:overflow-hidden">
+          <div className="w-full h-full flex md:justify-center overflow-x-auto md:overflow-hidden">
             {/* Center the image */}
             <ImageGallery
               items={images}
