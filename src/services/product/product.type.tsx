@@ -2,6 +2,7 @@ export type  TProduct  = {
     data: TProduct;
     _id: string;
     id?: string;
+    sku: string;
     description?:string;
     variations?: { value: string; type: string; _id?: string | undefined}[] | undefined;
     name: string;

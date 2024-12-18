@@ -14,11 +14,12 @@ export function generateWhatsAppMessage(
     0
   ).toFixed(2);
 
-  // Create product details summary
+  // Create product details summary, including SKU code
   const productDetails = cartItems.map(({ product, quantity }) => `
 Name: ${product.name}
 Quantity: ${quantity}
-Price: ₹${product.price.toFixed(2)} // Assuming price needs formatting
+Price: ₹${product.price.toFixed(2)} 
+SKU Code: ${product.sku} 
 `).join('\n');
 
   // Construct the message
@@ -26,7 +27,7 @@ Price: ₹${product.price.toFixed(2)} // Assuming price needs formatting
 *Product Summary:*
 ${productDetails}
 
-*Subtotal:* $${subtotal}
+*Subtotal:* ₹${subtotal} 
 
 *User Info:*
 Name: ${formData.name}

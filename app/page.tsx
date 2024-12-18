@@ -16,7 +16,7 @@ export default function Home() {
         <BuyOnPhoneButton />
       </div>
 
-      <div className="fixed bottom-1/2 left-0  z-50">
+      <div className="fixed bottom-28 left-0 z-50">
         <CallButton/>
       </div>
     </main>

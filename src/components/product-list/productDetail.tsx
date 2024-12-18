@@ -73,8 +73,6 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ id }) => {
     string | undefined
   >(); // State to store selected variation
 
-  
-
   const {
     control,
     handleSubmit,
@@ -170,6 +168,7 @@ Category: ${product.category}
 Quantity: ${quantity} 
 Price: ${product.price}
 Description: ${product.descriptions}
+SKU Code: ${product.sku}
 
 *User Info:*
 Name: ${data.name}
@@ -178,7 +177,7 @@ Phone: ${data.phone}
 Address: ${data.address}
     `.trim();
 
-    console.log("selected variation", selectedVariation);
+    
 
     const encodedMessage = encodeURIComponent(message);
     const whatsappLink = `https://wa.me/8630715936?text=${encodedMessage}`;
@@ -202,7 +201,6 @@ Address: ${data.address}
     return (
       <div className="flex items-center justify-center h-screen">
         <FaSpinner className="animate-spin text-gray-700 text-4xl" />
-        
       </div>
     );
   }
@@ -342,7 +340,7 @@ Address: ${data.address}
                     <tbody>
                       {product.variations.map((variation) => (
                         <tr key={variation._id}>
-                          <td className=" py-2 text-gray-900 font-normal">
+                          <td className="py-2 text-gray-900 font-normal">
                             {variation.type}
                           </td>
                           <td className="px-4 py-2 text-gray-600 font-normal">
@@ -353,6 +351,17 @@ Address: ${data.address}
                           </td>
                         </tr>
                       ))}
+
+                      {/* New row for SKU code */}
+                      <tr>
+                        <td className="py-2 text-gray-900 font-normal">
+                          SKU 
+                        </td>
+                        <td className="px-4 py-2 text-gray-600 font-normal">
+                          :
+                        </td>
+                        <td className="py-2 text-gray-600">{product.sku}</td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>

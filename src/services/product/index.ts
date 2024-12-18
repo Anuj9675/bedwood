@@ -8,7 +8,7 @@ export const getProductsList = async (
     sortValue?: string,
     categoryId?: string,
     subCategoryId?: string,
-    pageNo?: number // Add pageNo parameter
+    pageNo?: number 
   ): Promise<ProductResponse> => {
     const params = new URLSearchParams();
   
@@ -22,7 +22,7 @@ export const getProductsList = async (
       params.append('subCategoryId', subCategoryId);
     }
     if (pageNo) {
-      params.append('page', pageNo.toString()); // Append pageNo as 'page'
+      params.append('page', pageNo.toString()); 
     }
   
     return (await Api.get(path + "/list?", { params })).data;
