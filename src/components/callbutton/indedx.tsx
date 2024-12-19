@@ -4,7 +4,7 @@ const CallButton = () => {
   return (
     <a
       href="tel:+91 86307 15936" 
-      className=" bg-gradient-to-r from-orange-400 to-orange-500 text-white p-3 rounded-md shadow-lg hover:from-orange-500 hover:to-orange-600 transition-all duration-300 ease-in-out transform hover:scale-105 flex flex-col md:flex-row items-center justify-center md:justify-start md:space-x-2 w-20 h-20 md:w-auto md:h-auto"
+      className=" bg-gradient-to-r from-orange-400 to-orange-500 text-white p-3 rounded-md shadow-lg hover:from-orange-500 hover:to-orange-600 transition-all duration-300 ease-in-out transform hover:scale-105 flex flex-col md:flex-row items-center justify-center md:justify-start md:space-x-2 w-16 h-16 md:w-auto md:h-auto"
       aria-label="Buy on Phone"
     >
       <svg 
@@ -22,11 +22,11 @@ const CallButton = () => {
         />
       </svg>
       <div className="flex flex-col items-center md:items-start">
-        <p className="font-semibold text-[12px] md:text-[16px] leading-tight text-center md:text-left">
+        <p className="font-semibold text-[10px] md:text-[16px] leading-tight text-center md:text-left">
           Buy On
           <span className="hidden md:inline"> Phone</span>
         </p>
-        <p className="font-semibold text-[12px] md:hidden">Phone</p>
+        <p className="font-semibold text-[10px] md:hidden">Phone</p>
         <span className="hidden md:inline font-semibold text-sm">+91 8630715936</span>
       </div>
     </a>
